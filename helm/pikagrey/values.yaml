@@ -26,19 +26,26 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 5000
+  port: 80
   targetPort: 5000
 
 ingress:
-  enabled: false
-  className: ""
-  annotations: {}
+  enabled: true
+  className: nginx
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
   hosts:
-    - host: chart-example.local
+    - host: ""
       paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
+        - path: /v3
+          pathType: Prefix
+          backend:
+            service:
+              name: pikablu
+              port:
+                number: 80
+
 
 resources: {}
 

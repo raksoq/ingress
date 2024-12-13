@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "pikaflask.fullname" . }}
+  name: {{ include "pikablu.fullname" . }}
   labels:
-    {{- include "pikaflask.labels" . | nindent 4 }}
+    {{- include "pikablu.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "pikaflask.fullname" . }}
+    name: {{ include "pikablu.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
