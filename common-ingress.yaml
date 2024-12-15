@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: multi-app-ingress
+  namespace: ingress-nginx
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /pikablu
+            pathType: Prefix
+            backend:
+              service:
+                name: pikablu
+                port:
+                  number: 80
+          - path: /pikagrey
+            pathType: Prefix
+            backend:
+              service:
+                name: pikagrey
+                port:
+                  number: 80

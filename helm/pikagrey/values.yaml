@@ -39,7 +39,7 @@ ingress:
     - host: ""
       paths:
         - path: /pikagrey(/|$)(.*)
-          pathType: Prefix
+          pathType: ImplementationSpecific
           backend:
             service:
               name: pikagrey
